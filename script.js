@@ -7,7 +7,11 @@ function getComputerChoice() {
 }
 
 function getHumanChoice() {
-  const choice = prompt("Escolhe: pedra, papel ou tesora");
+  const choice = prompt("Escolhe: rock, paper ou scissors");
+  if (!choice) {
+    console.log("Jogo cancelado.");
+    return null;
+  }
   return choice.toLowerCase();
 }
 
@@ -15,7 +19,11 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  humanChoice = humanChoice.toLowerCase();
+  if (!humanChoice) return;
+
+  console.log(`🧍 Jogador escolheu: ${humanChoice}`);
+  console.log(`🤖 Computador escolheu: ${computerChoice}`);
+
 
   if (humanChoice === computerChoice) {
     console.log(`Empate! Ambos escolheram ${humanChoice}`);
@@ -23,9 +31,9 @@ function playRound(humanChoice, computerChoice) {
   }
 
   const winConditions = {
-    rock: "tesora",
-    paper: "pedra",
-    scissors: "papel"
+    rock: "scissors",
+    paper: "rock",
+    scissors: "paper"
   };
 
   if (winConditions[humanChoice] === computerChoice) {
@@ -35,6 +43,7 @@ function playRound(humanChoice, computerChoice) {
     computerScore++;
     console.log(`Perdeste! ${computerChoice} ganha a ${humanChoice}`);
   }
+  console.log(`Pontuação atual - Tu: ${humanScore} | Computador: ${computerScore}`);
 }
 
 function playGame() {
@@ -42,20 +51,21 @@ function playGame() {
   computerScore = 0;
 
   for (let i = 1; i <= 5; i++) {
-    console.log(`\n--- Ronda ${i} ---`);
+    console.log(`\n🔁 Ronda ${i}`);
     const humanChoice = getHumanChoice();
+    if (humanChoice === null) return;
+
     const computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
-    console.log(`Pontuação: Humano ${humanScore} - Computador ${computerScore}`);
   }
 
   console.log("\n=== Resultado Final ===");
   if (humanScore > computerScore) {
     console.log("Parabéns! Ganhaste o jogo!");
   } else if (humanScore < computerScore) {
-    console.log("Perdeste o jogo. Tenta novamente!");
+    console.log("Perdeste o jogo.");
   } else {
-    console.log("Empate! Foi um bom jogo.");
+    console.log("Empate!");
   }
 }
 
