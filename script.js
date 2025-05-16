@@ -1,7 +1,7 @@
 console.log("Hello World");
 
 function gethumanChoice() {
-  let jogar = prompt("Escolhe: pedra, papel tesoura ");
+  let jogar = prompt("Escolhe: pedra, papel, tesoura ");
   if (!jogar) return null;
   return jogar;
  
