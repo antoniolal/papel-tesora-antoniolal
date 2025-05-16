@@ -1,72 +1,81 @@
 console.log("Hello World");
 
-function getComputerChoice() {
-  const choices = ["rock", "paper", "scissors"];
-  const randomIndex = Math.floor(Math.random() * choices.length);
-  return choices[randomIndex];
+function gethumanChoice() {
+  let jogar = prompt("Escolhe: pedra, papel tesoura ");
+  if (!jogar) return null;
+  return jogar;
+ 
 }
+function getcomputerChoice(){
+  const random = Math.random();
+  if(random < 0.33) {
+    return "pedra";
+  } else if (random < 0.66) {
+   
+  return  "papel";
 
-function getHumanChoice() {
-  const choice = prompt("Escolhe: rock, paper ou scissors");
-  if (!choice) {
-    console.log("Jogo cancelado.");
-    return null;
+  } else {
+   return "tesoura";
   }
-  return choice.toLowerCase();
+
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-  if (!humanChoice) return;
+   if  (!humanChoice) return;
+   console.log("Tu escolheste: " + humanChoice);
+   console.log("O Computador escolheu: " + computerChoice);
 
-  console.log(`🧍 Jogador escolheu: ${humanChoice}`);
-  console.log(`🤖 Computador escolheu: ${computerChoice}`);
-
-
-  if (humanChoice === computerChoice) {
-    console.log(`Empate! Ambos escolheram ${humanChoice}`);
-    return;
+   if (humanChoice === computerChoice) {
+     
+    console.log("Empate!");
+    return ;
   }
+  
+  if (
+    (humanChoice == "pedra"  && computerChoice == "tesoura" ) ||
+    (humanChoice == "papel" && computerChoice == "pedra") ||
+    (humanChoice == "tesoura" && computerChoice == "papel")
+){
+  humanScore++;
+  console.log("Ganhaste esta ronda!");
+} else {
+  computerScore++;
+  console.log("Perdeste esta ronda!");
+}
 
-  const winConditions = {
-    rock: "scissors",
-    paper: "rock",
-    scissors: "paper"
-  };
-
-  if (winConditions[humanChoice] === computerChoice) {
-    humanScore++;
-    console.log(`Ganhaste! ${humanChoice} ganha a ${computerChoice}`);
-  } else {
-    computerScore++;
-    console.log(`Perdeste! ${computerChoice} ganha a ${humanChoice}`);
-  }
-  console.log(`Pontuação atual - Tu: ${humanScore} | Computador: ${computerScore}`);
+console.log("Pontuação - Tu: " + humanScore + " | Computador: " + computerScore);
 }
 
 function playGame() {
-  humanScore = 0;
-  computerScore = 0;
+    humanScore = 0;
+    computerScore = 0;
 
-  for (let i = 1; i <= 5; i++) {
-    console.log(`\n🔁 Ronda ${i}`);
-    const humanChoice = getHumanChoice();
-    if (humanChoice === null) return;
-
-    const computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
+   for (let i = 1; i <= 5; i++) {
+    console.log("Ronda " + i);
+    const human = gethumanChoice();
+    if (human === null) {
+         console.log("O Jogo foi cancelado.");
+         return;
+      }
+      const computer = getcomputerChoice();
+      playRound(human,computer);
   }
+  console.log("Fim do Jogo");
+  if (humanScore > computerScore){
+       console.log("Ganhaste o jogo!");
 
-  console.log("\n=== Resultado Final ===");
-  if (humanScore > computerScore) {
-    console.log("Parabéns! Ganhaste o jogo!");
-  } else if (humanScore < computerScore) {
-    console.log("Perdeste o jogo.");
-  } else {
-    console.log("Empate!");
-  }
-}
+    } else if (humanScore < computerScore) {
+        console.log("O computador ganhou o jogo!");
 
-playGame();
+      } else {
+         console.log("Houve um empate!");
+      }  
+
+    }
+    playGame();
+
+
+
