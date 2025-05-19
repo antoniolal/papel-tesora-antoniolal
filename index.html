@@ -3,10 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Pedra, Papel ou Tesoura</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color:rgb(170, 242, 218); color: rgb(170, 242, 218);">
+<body>
+  
+  <h1>Jogo Pedra, Papel, Tesoura</h1>
+  <div>
+    <button data-choise="pedra">Pedra</button>
+    <button data-choise="papel">Papel</button>
+    <button data-choise="tesoura">Tesoura</button>
+    <button onclick="playGame()">Jogar</button>
+  </div>
+  
+  <div id="resultado">
+    <p id="mensagem"></p>
+    <p id="pontuacao">Jogador: 0 | Computador: 0</p>
+  </div>
   <script src="script.js"></script>
-  <h1 style= "color: black; font-family: 'Arial Narrow'; font-weight: 100px;">Jogo Pedra, Papel, Tesoura</h1>
-  <button onclick="playGame()">Jogar</button>
 </body>
 </html>

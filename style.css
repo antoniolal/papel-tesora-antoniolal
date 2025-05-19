@@ -1,0 +1,28 @@
+body {
+   font-family: Arial, sans-serif ;
+   text-align: center;
+   padding: 50px;
+   background-color: #f9f9f9; 
+ }
+
+h1 {
+    font-size: large;
+    margin-bottom: 20px;
+}
+
+#buttons {
+
+    margin: 20px;
+}
+
+button{
+    font-size: small;
+    padding: 10px 20px ;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+
+
+}
